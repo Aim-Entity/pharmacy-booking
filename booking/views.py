@@ -22,11 +22,15 @@ def sendingPackets(request):
             "14:00", "14:15", "14:30", "14:45",
             "15:00", "15:15", "15:30", "15:45", "16:00"]
 
-    # if not date:
-    #     return Response({ "status": 200, "time_slots": time })
-    # else:
-    time_taken = date
-    print(date)
-    print(date[0].date_model.all())
+    context = {
+        "time": time
+    }
 
-    return Response({"status": 200, "time_slots": time})
+    if not date:
+        return Response({"status": 200, "time_slots": time}, context)
+
+    time_taken = date
+    # print(date)
+    # print(date[0].date_model.all())
+
+    return Response({"status": 200, "time_slots": time}, context)
